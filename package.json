@@ -1,0 +1,25 @@
+{
+  "name": "zaisan-trainer-bot",
+  "version": "1.0.0",
+  "description": "Trainer Messenger bot for Zaisan customer bot. Accumulates change requests in Mongolian and applies them to the Zaisan_Tusul repo via the GitHub API on confirm.",
+  "private": true,
+  "type": "module",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc -p tsconfig.json && node scripts/copy-assets.cjs",
+    "start": "node dist/server.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.1",
+    "dotenv": "^16.6.1",
+    "express": "^4.21.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.7.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}

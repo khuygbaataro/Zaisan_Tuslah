@@ -1,0 +1,38 @@
+# Render Blueprint for the Zaisan Trainer Messenger bot.
+# Free tier: 750 hours/month, free HTTPS, sleeps after ~15 min idle.
+#
+# Secrets (sync: false) are NOT in this file — paste them into the Render
+# dashboard once under the service's Environment tab.
+services:
+  - type: web
+    name: zaisan-trainer-bot
+    runtime: node
+    plan: free
+    region: singapore
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: ANTHROPIC_MODEL
+        value: claude-opus-4-7
+      - key: FACEBOOK_PAGE_ACCESS_TOKEN
+        sync: false
+      - key: FACEBOOK_APP_SECRET
+        sync: false
+      - key: FACEBOOK_VERIFY_TOKEN
+        sync: false
+      - key: GITHUB_TOKEN
+        sync: false
+      - key: GITHUB_OWNER
+        value: khuygbaataro
+      - key: GITHUB_REPO
+        value: Zaisan_Tusul
+      - key: GITHUB_BRANCH
+        value: main
+      - key: ALLOWED_PSIDS
+        sync: false
