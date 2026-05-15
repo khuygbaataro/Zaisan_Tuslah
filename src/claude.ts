@@ -110,6 +110,16 @@ export async function runTrainerTurn(
   }
 
   if (!replyText) {
+    // The tool loop ended without Claude producing a final text block — either we hit
+    // MAX_TOOL_LOOPS or the last response had only tool_use blocks. Log loudly so the
+    // operator can find this in Render logs; the user-facing fallback stays generic.
+    console.error(
+      `[trainer] runTrainerTurn produced no reply text (psid=${psid}, loops=${MAX_TOOL_LOOPS}). ` +
+        `Last message types: ${messages
+          .slice(-3)
+          .map((m) => `${m.role}/${Array.isArray(m.content) ? m.content.map((b) => (b as { type?: string }).type ?? "text").join(",") : "text"}`)
+          .join(" | ")}`
+    );
     replyText = "Алдаа гарлаа. Дахин оролдоно уу.";
   }
 
