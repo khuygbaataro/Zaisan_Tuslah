@@ -80,7 +80,6 @@ export async function runTrainerTurn(
     const response = await client.messages.create({
       model: MODEL,
       max_tokens: 1024,
-      temperature: 0.2,
       system: systemPrompt,
       tools,
       messages,

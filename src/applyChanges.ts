@@ -101,7 +101,6 @@ export async function applyPendingChanges(changes: PendingChange[]): Promise<App
     const response = await client.messages.create({
       model: MODEL,
       max_tokens: 8192,
-      temperature: 0,
       system: EDITOR_SYSTEM_PROMPT,
       tools,
       messages,
